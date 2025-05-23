@@ -1,0 +1,435 @@
+/* =============================
+   🌐 1. Globala variabler & färgtema
+   ============================= */
+:root {
+  --primary: #222;
+  --accent: #24fff4;
+  --bg: #f7f7f9;   /* Changed to a very light gray */
+  --text: #222;    /* Darker text for contrast */
+}
+
+/* =============================
+   🧍 2. Grundläggande layout & typografi
+   ============================= */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg); /* Uses the new light background */
+  color: var(--text);          /* Uses the new text color */
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================
+   🔗 3. Navigationsmeny
+   ============================= */
+nav {
+  background: #fff;
+  margin: 2em auto 2.5em auto;
+  padding: 0.5em 2em;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  max-width: 900px;
+  position: sticky;
+  top: 1em;
+  z-index: 100;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5em;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  color: #222;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 0.5em 1.2em;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+nav a:hover,
+nav a:focus {
+  background: #525252;   
+  color: #fff;
+  text-decoration: none;
+}
+
+/* =============================
+   🧱 4. Sidhuvud & sidfot
+   ============================= */
+header, footer {
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
+
+footer {
+  background-color: var(--primary); /* Keep dark background for footer only */
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  min-height: 440px; /* Increased from 320px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =============================
+   📦 5. Huvudinnehåll & sektioner
+   ============================= */
+main, section {
+  max-width: 1200px;      /* Wider content area */
+  margin: 2em auto;       /* Less margin on top/bottom */
+  padding: 2em 2em;       /* More horizontal padding */
+  background: #fff;
+  color: #222;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.06); /* Softer, larger shadow */
+  width: 95%;             /* Use almost full width on large screens */
+}
+
+section > p {
+  margin-bottom: 2.5em;
+}
+
+/* =============================
+   📝 6. Formulär & inputfält
+   ============================= */
+label, input, textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+
+input, textarea {
+  padding: 0.5em;
+}
+
+/* =============================
+   🎯 7. Knappar & interaktion
+   ============================= */
+button {
+  padding: 0.8em 2em;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(140,82,255,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  background-color: hsl(122, 100%, 67%);
+  box-shadow: 0 4px 16px rgba(80, 255, 74, 0.12);
+}
+
+/* =============================
+   📱 8. Responsiv design
+   ============================= */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  nav li {
+    margin: 1em 0;
+  }
+
+  main, section {
+    margin: 1em;
+    padding: 1em;
+  }
+}
+
+.service {
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+  margin-bottom: 2.5em;
+}
+
+.service img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+@media (max-width: 700px) {
+  .service {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1em;
+  }
+  .service img {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+.banner-video {
+  position: relative;
+  width: 100%;
+  height: 440px; /* Increased from 320px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-video video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(34,34,34,0.45); /* semi-transparent black */
+  z-index: 2;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+}
+
+.banner-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.3em;
+}
+
+.banner-content p {
+  font-size: 1.3em;
+}
+
+.team {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  margin-top: 2em;
+}
+.team-member {
+  text-align: center;
+}
+.team-member img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.7em;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+/* =============================
+   📜 9. Sidhuvud med bakgrundsbild
+   ============================= */
+.page-header {
+  background: linear-gradient(120deg, var(--primary) 60%, var(--accent) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 1.2em 1em 1em 1em;   /* Reduced padding for less height */
+  border-radius: 18px;
+  margin: 2em auto 2.5em auto;
+  max-width: 1600px;            /* Match main/section */
+  width: 95%;                   /* Match main/section */
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  /* Optional: set a minimum height */
+  min-height: 90px;
+}
+
+.page-header a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.page-header a:hover {
+  color: #e0e0e0;
+}
+
+.features {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 3em 0 2em 0;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+.feature-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 2em 1.5em;
+  text-align: center;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition:
+    transform 0.22s cubic-bezier(.4,2,.6,1),
+    box-shadow 0.22s cubic-bezier(.4,2,.6,1),
+    background 0.22s;
+  cursor: pointer;
+}
+.feature-card:hover, .feature-card:focus-within {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 8px 32px 0 color-mix(in srgb, var(--accent) 60%, transparent), 0 2px 16px rgba(0,0,0,0.08);
+  background: linear-gradient(120deg, #f7f7f9 60%, #f3eaff 100%);
+}
+.feature-card svg {
+  color: var(--accent);
+}
+.gallery {
+  margin: 3em 0;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5em;
+  margin-top: 1em;
+}
+.gallery-grid img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.testimonial {
+  margin: 3em 0;
+  text-align: center;
+}
+.testimonial blockquote {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  display: inline-block;
+  padding: 2em 2.5em;
+  font-size: 1.2em;
+  font-style: italic;
+  color: #222;
+}
+.testimonial span {
+  display: block;
+  margin-top: 1em;
+  font-size: 1em;
+  color: var(--accent);
+}
+.secondary-video {
+  margin: 3em 0;
+  text-align: center;
+}
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+.video-wrapper video {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+@media (max-width: 900px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+  .feature-card {
+    width: 90%;
+    margin-bottom: 1.5em;
+  }
+}
+
+/* =============================
+   SVG Ikoner
+   ============================= */
+.icon {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
+.icon circle {
+  stroke: #24fff4;
+  fill: transparent;
+  stroke-width: 2;
+}
+
+.icon path {
+  fill: #24fff4;
+  transition: fill 0.3s;
+}
+
+.icon:hover path {
+  fill: hsl(122, 100%, 67%);
+}
+
+/* =============================
+   SVG Ikon - Ny design
+   ============================= */
+.icon-new {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
+.icon-new circle {
+  stroke: currentColor;
+  fill: #f7f7f9;
+  stroke-width: 4;
+}
+
+.icon-new path {
+  fill: currentColor;
+  transition: fill 0.3s;
+}
+
+.icon-new:hover path {
+  fill: hsl(122, 100%, 67%);
+}
+
+.icon-new .dot {
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    r: 3;
+  }
+  50% {
+    r: 6;
+  }
+}
