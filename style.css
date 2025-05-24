@@ -163,6 +163,10 @@ main, section {
   box-shadow: 0 6px 32px rgba(0,0,0,0.06);
 }
 
+main {
+  margin-top: 70px; /* Adjust to match nav height */
+}
+
 /* =============================
    📝 6. Formulär & inputfält
    ============================= */
