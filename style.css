@@ -4,7 +4,7 @@
 :root {
   --primary: #222;
   --accent: #24fff4;
-  --bg: #757575;   /* Changed to a very light gray */
+  --bg: #e8e8e8;   /* Changed to a very light gray */
   --text: #222;    /* Darker text for contrast */
 }
 
