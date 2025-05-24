@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tjänster – Dekorfabriken</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Hem</a></li>
+      <li><a href="tjanster.html" class="active">Tjänster</a></li>
+      <li><a href="about.html">Om oss</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <header class="services-hero">
+    <h1>Våra tjänster</h1>
+    <p>
+      Vi erbjuder helhetslösningar inom fordonsdekor, skyltar och kreativ foliering.<br>
+      Upptäck vad vi kan göra för dig!
+    </p>
+  </header>
+
+  <main>
+    <section class="services-grid">
+      <div class="service-card" data-service="bilfoliering">
+        <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=400&q=80" alt="Bilfoliering">
+        <h2>Bilfoliering</h2>
+        <p>Hel- och delfoliering, färgbyten, reklam och striping för alla fordon. Vi använder premiumfolie för bästa resultat.</p>
+      </div>
+      <div class="service-card" data-service="skyltar">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Skyltar & Fasad">
+        <h2>Skyltar & Fasad</h2>
+        <p>Design, produktion och montering av skyltar, fönsterdekor och fasadlösningar för företag och butik.</p>
+      </div>
+      <div class="service-card" data-service="specialprojekt">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Specialprojekt">
+        <h2>Specialprojekt</h2>
+        <p>Unika lösningar för events, mässor och inredning. Vi hjälper dig att sticka ut med kreativ dekor och foliering.</p>
+      </div>
+      <div class="service-card" data-service="fonsterdekor">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=400&q=80" alt="Fönsterdekor">
+        <h2>Fönsterdekor</h2>
+        <p>Frostad folie, solfilm och dekor för skyltfönster och kontor. Skapa rätt känsla och integritet med stil.</p>
+      </div>
+      <div class="service-card" data-service="bildekor-foretag">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Bildekor företag">
+        <h2>Bildekor företag</h2>
+        <p>Profilera ditt företag på vägarna med logotyper, kontaktuppgifter och budskap på era fordon.</p>
+      </div>
+      <div class="service-card" data-service="montering-och-service">
+        <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=400&q=80" alt="Montering & Service">
+        <h2>Montering & Service</h2>
+        <p>Vi erbjuder professionell montering och service av all dekor och foliering – snabbt, snyggt och hållbart.</p>
+      </div>
+    </section>
+  </main>
+
+  <section class="cta-section">
+    <h2>Redo att ta nästa steg?</h2>
+    <p>Kontakta oss för offert eller rådgivning – vi hjälper dig att synas!</p>
+    <a href="kontakt.html" class="cta-btn">Få offert</a>
+  </section>
+
+  <div class="service-details" id="service-details-modal" tabindex="-1" aria-modal="true" role="dialog">
+    <button class="close-details" aria-label="Stäng">&times;</button>
+    <div class="details-content">
+      <!-- Content will be injected here -->
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Dekorfabriken
+  </footer>
+
+  <script>
+const serviceDetails = {
+  bilfoliering: {
+    title: "Bilfoliering",
+    img: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=400&q=80",
+    text: "Hel- och delfoliering, färgbyten, reklam och striping för alla fordon. Vi använder premiumfolie för bästa resultat. <br><br><strong>Fördelar:</strong><ul><li>Skyddar lacken</li><li>Enkel att byta ut</li><li>Stort urval av färger och effekter</li></ul>",
+    cta: {
+      label: "Få offert på bilfoliering",
+      link: "kontakt.html"
+    }
+  },
+  skyltar: {
+    title: "Skyltar & Fasad",
+    img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
+    text: "Design, produktion och montering av skyltar, fönsterdekor och fasadlösningar för företag och butik. <br><br><strong>Vi erbjuder:</strong><ul><li>Ljuslådor</li><li>Plåtskyltar</li><li>Fönsterdekor</li></ul>",
+    cta: {
+      label: "Kontakta oss om skyltar",
+      link: "kontakt.html"
+    }
+  },
+  specialprojekt: {
+    title: "Specialprojekt",
+    img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+    text: "Unika lösningar för events, mässor och inredning. Vi hjälper dig att sticka ut med kreativ dekor och foliering.",
+    cta: {
+      label: "Diskutera ditt projekt",
+      link: "kontakt.html"
+    }
+  },
+  fonsterdekor: {
+    title: "Fönsterdekor",
+    img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=400&q=80",
+    text: "Frostad folie, solfilm och dekor för skyltfönster och kontor. Skapa rätt känsla och integritet med stil.",
+    cta: {
+      label: "Få offert på fönsterdekor",
+      link: "kontakt.html"
+    }
+  }
+  // Lägg till fler tjänster om du vill
+};
+
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('click', function() {
+    const key = this.getAttribute('data-service');
+    const modal = document.getElementById('service-details-modal');
+    const content = modal.querySelector('.details-content');
+    if (serviceDetails[key]) {
+      content.innerHTML = `
+        <img src="${serviceDetails[key].img}" alt="${serviceDetails[key].title}" style="width:100%;border-radius:14px;margin-bottom:1em;">
+        <h2>${serviceDetails[key].title}</h2>
+        <p>${serviceDetails[key].text}</p>
+        <a href="${serviceDetails[key].cta.link}" class="cta-btn" style="margin-top:1.5em;display:inline-block;">${serviceDetails[key].cta.label}</a>
+      `;
+      modal.classList.add('active');
+      modal.focus();
+    }
+  });
+});
+
+document.querySelector('.close-details').addEventListener('click', function() {
+  document.getElementById('service-details-modal').classList.remove('active');
+});
+
+// Optional: close modal on background click or ESC
+document.getElementById('service-details-modal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('active');
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === "Escape") {
+    document.getElementById('service-details-modal').classList.remove('active');
+  }
+});
+</script>
+</body>
+</html>

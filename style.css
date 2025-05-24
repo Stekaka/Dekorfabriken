@@ -452,6 +452,14 @@ button:hover {
     background 0.22s;
   cursor: pointer;
 }
+
+.features .feature-card {
+  min-height: 320px;
+  padding: 2.5em 1.5em 2em 1.5em;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
 .feature-card:hover, .feature-card:focus-within {
   transform: translateY(-10px) scale(1.04);
   box-shadow: 0 8px 32px 0 color-mix(in srgb, var(--accent) 60%, transparent), 0 2px 16px rgba(0,0,0,0.08);
@@ -726,46 +734,38 @@ button:hover {
 }
 
 /* Service Highlights */
-.service-highlights {
-  display: flex;
-  gap: 2em;
-  justify-content: center;
-  margin: 3em 0;
-  flex-wrap: wrap;
+
+
+
+
+.service-highlights .service-card img {
+  max-width: 100%;
+  height: 140px;
+  object-fit: cover;
 }
-.service-card {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-  padding: 1.5em 1em 1.5em 1em;
-  text-align: center;
-  width: 240px;
+.service-highlights .service-card.wide-card {
+  grid-column: 1 / span 3;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: 370px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.18s, box-shadow 0.18s;
-}
-.service-card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1em;
-}
-.service-card:hover, .service-card:focus-within {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 8px 32px 0 color-mix(in srgb, var(--accent) 60%, transparent), 0 2px 16px rgba(0,0,0,0.08);
 }
 
-/* Responsive */
+/* Responsive: stack cards on mobile */
 @media (max-width: 900px) {
   .service-highlights {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    gap: 1.2em;
   }
-  .service-card {
-    width: 90%;
-    margin-bottom: 1.5em;
+  .service-highlights .service-card,
+  .service-highlights .service-card.wide-card {
+    width: 98vw;
+    min-width: 0;
+    max-width: 100vw;
+    height: 320px;
   }
 }
 
@@ -824,6 +824,7 @@ button:hover {
   cursor: pointer;
 }
 
+/* --- Service Details Modal (tjanster.html) --- */
 .service-details {
   display: none;
   position: fixed;
@@ -861,6 +862,81 @@ button:hover {
 }
 .close-details:hover { color: #222; }
 
+/* --- Feature Details Modal (USP cards) --- */
+.feature-details {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(34,34,34,0.45);
+  align-items: center;
+  justify-content: center;
+}
+.feature-details.active {
+  display: flex;
+}
+.feature-details-content {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+  padding: 2.5em 2em 2em 2em;
+  max-width: 420px;
+  width: 90vw;
+  text-align: left;
+  position: relative;
+  animation: popIn 0.22s cubic-bezier(.4,2,.6,1);
+}
+.close-feature-details {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-feature-details:hover { color: #222; }
+
+/* --- Highlight Details Modal (service highlights on index.html) --- */
+.highlight-details {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(34,34,34,0.45);
+  align-items: center;
+  justify-content: center;
+}
+.highlight-details.active {
+  display: flex;
+}
+.highlight-details-content {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+  padding: 2.5em 2em 2em 2em;
+  max-width: 420px;
+  width: 90vw;
+  text-align: left;
+  position: relative;
+  animation: popIn 0.22s cubic-bezier(.4,2,.6,1);
+}
+.close-highlight-details {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-highlight-details:hover { color: #222; }
+
+/* --- Shared Modal Animations --- */
 @keyframes fadeIn {
   from { background: rgba(34,34,34,0); }
   to   { background: rgba(34,34,34,0.45); }
@@ -870,22 +946,81 @@ button:hover {
   to   { transform: scale(1); opacity: 1; }
 }
 
+/* --- Responsive for all modals --- */
 @media (max-width: 700px) {
-  .service-details .details-content {
+  .details-content,
+  .feature-details-content,
+  .highlight-details-content {
     max-width: 98vw;
     width: 98vw;
     margin: 0 1vw;
     padding: 1.2em 0.7em 1.2em 0.7em;
     border-radius: 14px;
   }
-  .service-details {
+  .service-details,
+  .feature-details,
+  .highlight-details {
     padding: 2em 0.2em;
     align-items: flex-start;
   }
-  .close-details {
+  .close-details,
+  .close-feature-details,
+  .close-highlight-details {
     top: 0.5em;
     right: 0.5em;
     font-size: 2.2em;
     padding: 0.2em 0.5em;
   }
+}
+
+.highlight-details,
+.feature-details,
+.service-details {
+  display: none !important;
+}
+.highlight-details.active,
+.feature-details.active,
+.service-details.active {
+  display: flex !important;
+}
+
+.service-highlights .service-card {
+  min-width: 260px;
+  max-width: 320px;
+  height: 370px;           /* Set a fixed height for all cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.service-highlights .service-card img {
+  width: 100%;
+  height: 160px;           /* Consistent image height */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 1em;
+}
+
+@media (max-width: 700px) {
+  .service-highlights .service-card,
+  .service-highlights .service-card.wide-card {
+    min-width: 90vw;
+    max-width: 98vw;
+    width: 98vw;
+    height: 320px;
+  }
+}
+
+.service-highlights .service-card.wide-card {
+  grid-column: 1 / span 3; /* This makes it span all 3 columns */
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

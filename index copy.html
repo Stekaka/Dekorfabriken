@@ -136,23 +136,18 @@
   <main>
     <!-- Service Highlights -->
     <section class="service-highlights">
-      <div class="service-card" data-service="fordonsdekor">
-        <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80" alt="Fordonsdekor">
+      <div class="service-card" data-highlight="fordonsdekor">
+        <img src="images/fordonsdekor.jpg" alt="Fordonsdekor">
         <h2>Fordonsdekor</h2>
         <p>Visa upp ditt varumärke på vägarna.</p>
       </div>
-      <div class="service-card" data-service="skyltar">
-        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80" alt="Skyltar">
+      <div class="service-card" data-highlight="skyltar">
+        <img src="images/skyltar.jpg" alt="Skyltar">
         <h2>Skyltar</h2>
         <p>Skyltar för alla miljöer och behov.</p>
       </div>
-      <div class="service-card" data-service="dekor">
-        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="Dekor & Foliering">
-        <h2>Dekor & Foliering</h2>
-        <p>Kreativ dekor och foliering för alla ytor.</p>
-      </div>
-      <div class="service-card wide-card" data-service="print">
-        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Print & Tryck">
+      <div class="service-card" data-highlight="print">
+        <img src="images/print.jpg" alt="Print & Tryck">
         <h2>Print & Tryck</h2>
         <p>Högkvalitativa trycksaker och dekaler.</p>
       </div>
@@ -242,14 +237,6 @@
       <button class="close-highlight-details" aria-label="Stäng">&times;</button>
       <div class="highlight-details-content"></div>
     </div>
-
-    <!-- Modal for service details -->
-    <div class="service-details" id="service-details-modal" tabindex="-1" aria-modal="true" role="dialog">
-      <button class="close-details" aria-label="Stäng">&times;</button>
-      <div class="details-content">
-        <!-- Content will be injected here -->
-      </div>
-    </div>
   </main>
 
   <footer>
@@ -307,7 +294,7 @@ document.addEventListener('keydown', function(e) {
 const highlightDetails = {
   fordonsdekor: {
     title: "Fordonsdekor",
-    img: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80",
+    img: "images/fordonsdekor.jpg",
     text: "Vi erbjuder helfoliering, striping och logotypdekor för alla typer av fordon. Lyft ditt varumärke på vägarna med professionell fordonsdekor.",
     cta: {
       label: "Få offert på fordonsdekor",
@@ -316,7 +303,7 @@ const highlightDetails = {
   },
   skyltar: {
     title: "Skyltar",
-    img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80",
+    img: "images/skyltar.jpg",
     text: "Vi designar, producerar och monterar skyltar för både inomhus- och utomhusbruk. Från fasadskyltar till fönsterdekor.",
     cta: {
       label: "Kontakta oss om skyltar",
@@ -325,7 +312,7 @@ const highlightDetails = {
   },
   print: {
     title: "Print & Tryck",
-    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
+    img: "images/print.jpg",
     text: "Vi levererar allt från dekaler och etiketter till stora printlösningar. Hög kvalitet och snabba leveranser.",
     cta: {
       label: "Beställ trycksaker",
@@ -344,7 +331,7 @@ document.querySelectorAll('.service-highlights .service-card').forEach(card => {
         <img src="${highlightDetails[key].img}" alt="${highlightDetails[key].title}" style="width:100%;border-radius:14px;margin-bottom:1em;">
         <h2>${highlightDetails[key].title}</h2>
         <p>${highlightDetails[key].text}</p>
-        <a href="${highlightDetails[key].cta.link}" class="cta-btn" style="margin-top:1.5em;display:inline-block;">${highlightDetails[key].cta.label}</a>
+        <a href="${highlightDetails[key].cta.link}" class="cta-btn" style="display:inline-block;margin-top:1em;padding:10px 20px;background:#007bff;color:white;border-radius:5px;text-align:center;text-decoration:none;">${highlightDetails[key].cta.label}</a>
       `;
       modal.classList.add('active');
       modal.focus();
@@ -361,67 +348,6 @@ document.getElementById('highlight-details-modal').addEventListener('click', fun
 document.addEventListener('keydown', function(e) {
   if (e.key === "Escape") {
     document.getElementById('highlight-details-modal').classList.remove('active');
-  }
-});
-
-const serviceDetails = {
-  fordonsdekor: {
-    title: "Fordonsdekor",
-    img: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80",
-    text: "Vi erbjuder helfoliering, striping och logotypdekor för alla typer av fordon. Lyft ditt varumärke på vägarna med professionell fordonsdekor.",
-    cta: {
-      label: "Få offert på fordonsdekor",
-      link: "kontakt.html"
-    }
-  },
-  skyltar: {
-    title: "Skyltar",
-    img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80",
-    text: "Vi designar, producerar och monterar skyltar för både inomhus- och utomhusbruk. Från fasadskyltar till fönsterdekor.",
-    cta: {
-      label: "Kontakta oss om skyltar",
-      link: "kontakt.html"
-    }
-  },
-  print: {
-    title: "Print & Tryck",
-    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
-    text: "Vi levererar allt från dekaler och etiketter till stora printlösningar. Hög kvalitet och snabba leveranser.",
-    cta: {
-      label: "Beställ trycksaker",
-      link: "kontakt.html"
-    }
-  }
-  // Lägg till fler om du har fler kort
-};
-
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('click', function() {
-    const key = this.getAttribute('data-service');
-    const modal = document.getElementById('service-details-modal');
-    const content = modal.querySelector('.details-content');
-    if (serviceDetails[key]) {
-      content.innerHTML = `
-        <img src="${serviceDetails[key].img}" alt="${serviceDetails[key].title}" style="width:100%;border-radius:14px;margin-bottom:1em;">
-        <h2>${serviceDetails[key].title}</h2>
-        <p>${serviceDetails[key].text}</p>
-        <a href="${serviceDetails[key].cta.link}" class="cta-btn" style="margin-top:1.5em;display:inline-block;">${serviceDetails[key].cta.label}</a>
-      `;
-      modal.classList.add('active');
-      modal.focus();
-    }
-  });
-});
-
-document.querySelector('.close-details').addEventListener('click', function() {
-  document.getElementById('service-details-modal').classList.remove('active');
-});
-document.getElementById('service-details-modal').addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('active');
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === "Escape") {
-    document.getElementById('service-details-modal').classList.remove('active');
   }
 });
   </script>

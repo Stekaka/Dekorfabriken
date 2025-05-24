@@ -4,7 +4,7 @@
 :root {
   --primary: #222;
   --accent: #24fff4;
-  --bg: #f7f7f9;   /* Changed to a very light gray */
+  --bg: #e8e8e8;   /* Changed to a very light gray */
   --text: #222;    /* Darker text for contrast */
 }
 
@@ -19,19 +19,50 @@ body {
   padding: 0;
 }
 
+/* Prevent horizontal scroll on mobile */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 /* =============================
    🔗 3. Navigationsmeny
    ============================= */
 nav {
-  background: #fff;
-  margin: 2em auto 2.5em auto;
-  padding: 0.5em 2em;
-  border-radius: 16px;
+  background: rgba(245, 245, 247, 0.92);
+  border-radius: 18px; /* Rounds all four corners */
   box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  margin: 0 auto;
+  padding: 0.5em 2em;
   max-width: 900px;
-  position: sticky;
+  position: fixed;
   top: 1em;
-  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  transition: background 0.2s;
+}
+
+/* Mobile: full width, keep rounded lower corners */
+@media (max-width: 768px) {
+  nav {
+    position: fixed;
+    top: 2em;         /* Add this line for spacing from the top */
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 18px;
+    margin: 0;
+    padding: 0;
+    z-index: 200;
+    transform: none;
+  }
+  nav ul {
+    padding: 0.5em 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 nav ul {
@@ -49,6 +80,9 @@ nav li {
 }
 
 nav a {
+  position: relative;
+  overflow: visible;
+  z-index: 1;
   color: #222;
   text-decoration: none;
   font-weight: 600;
@@ -56,12 +90,67 @@ nav a {
   padding: 0.5em 1.2em;
   border-radius: 8px;
   transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Main drip */
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 0; /* Hidden by default */
+  background: var(--accent);
+  border-radius: 0 0 80px 80px / 0 0 60px 60px;
+  z-index: -1;
+  pointer-events: none;
+  transition: height 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+/* Second, smaller drip */
+nav a::before {
+  content: '';
+  position: absolute;
+  left: 65%;
+  top: calc(100%); /* Start below the main drip */
+  transform: translateX(-50%);
+  width: 20px; /* Narrow drop */
+  height: 0;
+  background: var(--accent);
+  /* Teardrop: very narrow top, very round bottom */
+  border-radius: 10% 10% 80px 80px / 10% 10% 60px 60px;
+  z-index: -1;
+  pointer-events: none;
+  transition: height 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+nav a:hover::after,
+nav a:focus::after {
+  height: 2.6em; /* Drip appears on hover */
+}
+
+nav a:hover::before,
+nav a:focus::before {
+  height: 32px; /* The secondary drop appears below the main drip */
 }
 
 nav a:hover,
 nav a:focus {
-  background: #525252;   
   color: #fff;
+  background: none;
+}
+
+nav a:focus,
+nav a:active,
+nav a:visited {
+  outline: none;
+  box-shadow: none;
+  border: none;
   text-decoration: none;
 }
 
@@ -69,7 +158,7 @@ nav a:focus {
    🧱 4. Sidhuvud & sidfot
    ============================= */
 header, footer {
-  color: #fff;
+  color: #5c5c5c;
   text-align: center;
   padding: 1em;
 }
@@ -82,7 +171,7 @@ header {
   position: relative;
   overflow: hidden;
   padding: 0;
-  min-height: 440px; /* Increased from 320px */
+  min-height: 700px; /* Increased from 440px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,19 +180,27 @@ header {
 /* =============================
    📦 5. Huvudinnehåll & sektioner
    ============================= */
-main, section {
-  max-width: 1200px;      /* Wider content area */
-  margin: 2em auto;       /* Less margin on top/bottom */
-  padding: 2em 2em;       /* More horizontal padding */
-  background: #fff;
-  color: #222;
-  border-radius: 18px;
-  box-shadow: 0 6px 32px rgba(0,0,0,0.06); /* Softer, larger shadow */
-  width: 95%;             /* Use almost full width on large screens */
+main, section, .banner-video, .gallery-grid, .features {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-section > p {
-  margin-bottom: 2.5em;
+main, section {
+  max-width: 1200px;
+  width: 95%;
+  margin: 2em auto;
+  padding: 2em 2em;
+  color: #222;
+  /* Remove background, border-radius, and box-shadow */
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+main {
+  margin-top: 70px; /* Adjust to match nav height */
 }
 
 /* =============================
@@ -140,24 +237,71 @@ button:hover {
 }
 
 /* =============================
-   📱 8. Responsiv design
+   📱 8. Responsiv design & mobilnav
    ============================= */
+
+/* Mobile layout for main content */
 @media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-    gap: 0.5em;
-  }
-
-  nav li {
-    margin: 1em 0;
-  }
-
   main, section {
-    margin: 1em;
-    padding: 1em;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;         /* Center on mobile too */
+    padding: 1em 0.5em;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
+/* Mobile navigation (hamburger menu) */
+@media (max-width: 768px) {
+  nav {
+    position: fixed;
+    top: 1em;         /* Add this line for spacing from the top */
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 18px;
+    margin: 0;
+    padding: 0;
+    z-index: 200;
+    transform: none;
+  }
+  nav ul {
+    padding: 0.5em 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  nav ul {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    gap: 0.5em;
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+  }
+  nav ul li {
+    border-bottom: none;
+    margin: 0;
+  }
+  nav ul li a {
+    padding: 0.7em 0.7em;
+    font-size: 1em;
+    display: block;
+    text-align: center;
+  }
+}
+
+/* =============================
+   🧪 9. Experimentella funktioner
+   ============================= */
 .service {
   display: flex;
   align-items: flex-start;
@@ -188,13 +332,14 @@ button:hover {
 .banner-video {
   position: relative;
   width: 100%;
-  height: 440px; /* Increased from 320px */
+  height: 100vh; /* Full viewport height */
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.banner-video video {
+.banner-img {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
@@ -216,6 +361,12 @@ button:hover {
   z-index: 3;
   color: #fff;
   text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .banner-content h1 {
@@ -225,6 +376,7 @@ button:hover {
 
 .banner-content p {
   font-size: 1.3em;
+  margin-top: 0;    /* Remove space above the text */
 }
 
 .team {
@@ -246,7 +398,7 @@ button:hover {
 }
 
 /* =============================
-   📜 9. Sidhuvud med bakgrundsbild
+   📜 10. Sidhuvud med bakgrundsbild
    ============================= */
 .page-header {
   background: linear-gradient(120deg, var(--primary) 60%, var(--accent) 100%);
@@ -300,6 +452,14 @@ button:hover {
     background 0.22s;
   cursor: pointer;
 }
+
+.features .feature-card {
+  min-height: 320px;
+  padding: 2.5em 1.5em 2em 1.5em;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
 .feature-card:hover, .feature-card:focus-within {
   transform: translateY(-10px) scale(1.04);
   box-shadow: 0 8px 32px 0 color-mix(in srgb, var(--accent) 60%, transparent), 0 2px 16px rgba(0,0,0,0.08);
@@ -367,6 +527,121 @@ button:hover {
     width: 90%;
     margin-bottom: 1.5em;
   }
+  .feature-card.in-view {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 8px 32px 0 color-mix(in srgb, var(--accent) 60%, transparent), 0 2px 16px rgba(0,0,0,0.08);
+    background: linear-gradient(120deg, #f7f7f9 60%, #f3eaff 100%);
+    transition:
+      transform 0.22s cubic-bezier(.4,2,.6,1),
+      box-shadow 0.22s cubic-bezier(.4,2,.6,1),
+      background 0.22s;
+  }
+}
+ 
+/* --- Services Hero --- */
+.services-hero {
+  background: linear-gradient(100deg, #f7f7f9 60%, #e0e7ff 100%);
+  text-align: center;
+  padding: 2.2em 0.5em 1.2em 0.5em;
+  border-radius: 18px;
+  margin: 2em auto 2.5em auto;
+  max-width: 1200px;
+  width: 95vw;
+  min-width: 0;
+  box-shadow: 0 2px 16px rgba(140,82,255,0.07), 0 2px 8px rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.services-hero h1 {
+  font-size: 2.3em;
+  margin-bottom: 0.2em;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #181818;
+  text-shadow: 0 2px 8px rgba(140,82,255,0.04);
+}
+.services-hero p {
+  font-size: 1.1em;
+  color: #444;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* --- Services Grid --- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 2em;
+  max-width: 1200px;
+  margin: 0 auto 3em auto;
+  padding: 2em 1em;      /* Increased vertical padding */
+  /* Remove background, border-radius, box-shadow if present */
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.service-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(140,82,255,0.07), 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2em 1.2em 1.2em 1.2em;
+  text-align: center;
+  transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.service-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1em;
+  box-shadow: 0 2px 8px rgba(140,82,255,0.10);
+}
+.service-card h2 {
+  font-size: 1.3em;
+  margin: 0.5em 0 0.3em 0;
+  font-weight: 700;
+  color: #222;
+}
+.service-card p {
+  color: #555;
+  font-size: 1em;
+  margin: 0;
+}
+.service-card:hover,
+.service-card:focus-within {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px 0 color-mix(in srgb, #8c52ff 60%, transparent), 0 2px 16px rgba(0,0,0,0.08);
+  background: linear-gradient(120deg, #f7f7f9 60%, #f3eaff 100%);
+}
+
+/* Responsive tweaks */
+@media (max-width: 700px) {
+  .services-hero {
+    padding: 2.5em 0.5em 1.2em 0.5em;
+    border-radius: 0 0 18px 18px;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1em;
+    padding: 1em 0.2em;
+  }
+  .service-card {
+    padding: 1.2em 0.5em 1em 0.5em;
+    margin: 0 auto;
+    width: 98%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
 }
 
 /* =============================
@@ -432,4 +707,323 @@ button:hover {
   50% {
     r: 6;
   }
+}
+
+/* =============================
+   Övriga anpassningar
+   ============================= */
+/* CTA Button */
+.cta-btn {
+  display: inline-block;
+  margin-top: 1.5em;
+  margin-bottom: 2em; /* Add this line for space below the button */
+  padding: 0.9em 2.2em;
+  background: var(--accent);
+  color: #222;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 1.2em;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.cta-btn:hover, .cta-btn:focus {
+  background: #222;
+  color: #fff;
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+/* Service Highlights */
+.service-highlights {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  margin: 3em 0;
+  flex-wrap: wrap;
+}
+.service-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 1.5em 1em 1.5em 1em;
+  text-align: center;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.service-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+.service-card:hover, .service-card:focus-within {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px 0 color-mix(in srgb, var(--accent) 60%, transparent), 0 2px 16px rgba(0,0,0,0.08);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .service-highlights {
+    flex-direction: column;
+    align-items: center;
+  }
+  .service-card {
+    width: 90%;
+    margin-bottom: 1.5em;
+  }
+}
+
+.banner-logo {
+  max-width: 560px;
+  width: 95%;
+  margin: 0 auto 0 auto; /* No space below logo */
+  display: block;
+}
+
+/* =============================
+   CTA Sektion
+   ============================= */
+.cta-section {
+  background: linear-gradient(100deg, #e0e7ff 60%, #f7f7f9 100%);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(140,82,255,0.07), 0 2px 8px rgba(0,0,0,0.04);
+  text-align: center;
+  padding: 2.5em 1em 2em 1em;
+  margin: 3em auto 2em auto;
+  max-width: 700px;
+}
+.cta-section h2 {
+  font-size: 2em;
+  margin-bottom: 0.4em;
+  font-weight: 800;
+  color: #181818;
+}
+.cta-section p {
+  font-size: 1.15em;
+  color: #444;
+  margin-bottom: 1.2em;
+}
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #8c52ff 60%, #4fd1c5 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1em;
+  padding: 0.9em 2.2em;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(140,82,255,0.10);
+  transition: background 0.18s, transform 0.18s;
+}
+.cta-btn:hover, .cta-btn:focus {
+  background: linear-gradient(90deg, #4fd1c5 60%, #8c52ff 100%);
+  transform: translateY(-2px) scale(1.04);
+  color: #fff;
+}
+
+/* =============================
+   Service Details
+   ============================= */
+.service-card {
+  cursor: pointer;
+}
+
+/* --- Service Details Modal (tjanster.html) --- */
+.service-details {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(34,34,34,0.45);
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+.service-details.active {
+  display: flex;
+}
+.details-content {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+  padding: 2.5em 2em 2em 2em;
+  max-width: 420px;
+  width: 90vw;
+  text-align: left;
+  position: relative;
+  animation: popIn 0.22s cubic-bezier(.4,2,.6,1);
+}
+.close-details {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-details:hover { color: #222; }
+
+/* --- Feature Details Modal (USP cards) --- */
+.feature-details {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(34,34,34,0.45);
+  align-items: center;
+  justify-content: center;
+}
+.feature-details.active {
+  display: flex;
+}
+.feature-details-content {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+  padding: 2.5em 2em 2em 2em;
+  max-width: 420px;
+  width: 90vw;
+  text-align: left;
+  position: relative;
+  animation: popIn 0.22s cubic-bezier(.4,2,.6,1);
+}
+.close-feature-details {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-feature-details:hover { color: #222; }
+
+/* --- Highlight Details Modal (service highlights on index.html) --- */
+.highlight-details {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(34,34,34,0.45);
+  align-items: center;
+  justify-content: center;
+}
+.highlight-details.active {
+  display: flex;
+}
+.highlight-details-content {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+  padding: 2.5em 2em 2em 2em;
+  max-width: 420px;
+  width: 90vw;
+  text-align: left;
+  position: relative;
+  animation: popIn 0.22s cubic-bezier(.4,2,.6,1);
+}
+.close-highlight-details {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-highlight-details:hover { color: #222; }
+
+/* --- Shared Modal Animations --- */
+@keyframes fadeIn {
+  from { background: rgba(34,34,34,0); }
+  to   { background: rgba(34,34,34,0.45); }
+}
+@keyframes popIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* --- Responsive for all modals --- */
+@media (max-width: 700px) {
+  .details-content,
+  .feature-details-content,
+  .highlight-details-content {
+    max-width: 98vw;
+    width: 98vw;
+    margin: 0 1vw;
+    padding: 1.2em 0.7em 1.2em 0.7em;
+    border-radius: 14px;
+  }
+  .service-details,
+  .feature-details,
+  .highlight-details {
+    padding: 2em 0.2em;
+    align-items: flex-start;
+  }
+  .close-details,
+  .close-feature-details,
+  .close-highlight-details {
+    top: 0.5em;
+    right: 0.5em;
+    font-size: 2.2em;
+    padding: 0.2em 0.5em;
+  }
+}
+
+.highlight-details,
+.feature-details,
+.service-details {
+  display: none !important;
+}
+.highlight-details.active,
+.feature-details.active,
+.service-details.active {
+  display: flex !important;
+}
+
+.service-highlights .service-card {
+  min-width: 260px;
+  max-width: 320px;
+  height: 370px;           /* Set a fixed height for all cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.service-highlights .service-card img {
+  width: 100%;
+  height: 160px;           /* Consistent image height */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 1em;
+}
+
+@media (max-width: 700px) {
+  .service-highlights .service-card,
+  .service-highlights .service-card.wide-card {
+    min-width: 90vw;
+    max-width: 98vw;
+    width: 98vw;
+    height: 320px;
+  }
+}
+
+.service-highlights .service-card.wide-card {
+  min-width: 370px;
+  max-width: 500px;
+  width: 420px;
 }
