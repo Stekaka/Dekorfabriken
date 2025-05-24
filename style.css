@@ -4,7 +4,7 @@
 :root {
   --primary: #222;
   --accent: #24fff4;
-  --bg: #e8e8e8;   /* Changed to a very light gray */
+  --bg: #f2f2f2;   /* Changed to a very light gray */
   --text: #222;    /* Darker text for contrast */
 }
 
@@ -1105,7 +1105,7 @@ button:hover {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 2px 16px rgba(140,82,255,0.07), 0 2px 8px rgba(0,0,0,0.04);
-  height: 260px;
+  height: 70px; /* or your preferred height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1119,26 +1119,34 @@ button:hover {
   z-index: 1;
 }
 .about-hero-overlay {
-  position: relative;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 2;
   color: #fff;
   text-align: center;
-  width: 100%;
   background: rgba(34,34,34,0.32);
-  padding: 2em 1em;
+  padding: 0; /* Remove vertical padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-shadow: 0 2px 16px rgba(0,0,0,0.25);
 }
 .about-hero-overlay h1 {
-  font-size: 2.5em;
-  margin-bottom: 0.3em;
-  font-weight: 800;
+  font-size: 2em;         /* Bigger headline */
+  font-weight: 900;       /* Extra bold */
   letter-spacing: -1px;
+  margin: 0;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  text-transform: uppercase; /* Optional: for a modern look */
 }
 .about-hero-overlay p {
-  font-size: 1.2em;
-  font-weight: 500;
-  margin: 0 auto;
-  line-height: 1.5;
+  font-size: 1em;
+  margin: 0;
 }
 
 /* Main card */
@@ -1212,4 +1220,175 @@ button:hover {
   .about-card { padding: 1.2em 0.7em; }
   .team { gap: 1em; }
   .team-member { width: 100%; max-width: 320px; margin: 0 auto; }
+}
+
+/* =============================
+   Kontaktsektion
+   ============================= */
+.contact-hero {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2em auto 2em auto;
+  border-radius: 18px;
+  overflow: hidden;
+  height: 120px;
+  background: linear-gradient(100deg, #8c52ff 60%, #4fd1c5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-hero-overlay {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.contact-hero-overlay h1 {
+  font-size: 2em;
+  margin-bottom: 0.2em;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.contact-hero-overlay p {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin: 0;
+}
+
+.contact-card {
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(140,82,255,0.13), 0 2px 8px rgba(0,0,0,0.08);
+  padding: 2.5em 2em 2em 2em;
+  max-width: 700px;
+   margin: 1.5em auto 2em auto;
+  display: flex;
+  gap: 2em;
+  backdrop-filter: blur(6px);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.contact-info {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  font-size: 1.1em;
+}
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+.contact-icon {
+  font-size: 1.5em;
+  color: #8c52ff;
+}
+.contact-info a {
+  color: #181818;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.contact-info a:hover {
+  color: #4fd1c5;
+}
+
+.contact-form {
+  flex: 2 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #e0e7ff;
+  border-radius: 8px;
+  padding: 0.8em;
+  font-size: 1em;
+  background: #f7f7f9;
+  transition: border 0.2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border: 1.5px solid #8c52ff;
+  outline: none;
+}
+.contact-form button {
+  background: linear-gradient(90deg, #8c52ff 60%, #4fd1c5 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1em;
+  padding: 0.9em 2.2em;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 2px 12px rgba(140,82,255,0.10);
+  transition: background 0.18s, transform 0.18s;
+  cursor: pointer;
+}
+.contact-form button:hover {
+  background: linear-gradient(90deg, #4fd1c5 60%, #8c52ff 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.contact-map {
+  max-width: 700px;
+  margin: 0 auto 2em auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(140,82,255,0.07), 0 2px 8px rgba(0,0,0,0.04);
+}
+.contact-map iframe {
+  width: 100%;
+  height: 220px;
+  border: none;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-card {
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 1.2em 0.7em;
+    margin: -40px auto 1.5em auto;
+  }
+  .contact-map {
+    margin-bottom: 1.5em;
+  }
+}
+
+.about-hero,
+.contact-hero,
+.services-hero {
+  height: 70px;
+  min-height: 0;
+  margin-top: 3.5em; /* Add space from the top/nav */
+}
+
+.about-hero-overlay,
+.contact-hero-overlay,
+.services-hero-overlay {
+  padding: 0 1em;
+}
+
+.about-hero-overlay h1,
+.contact-hero-overlay h1,
+.services-hero-overlay h1 {
+  font-size: 2em;         /* Bigger headline */
+  font-weight: 900;       /* Extra bold */
+  letter-spacing: -1px;
+  margin: 0;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  text-transform: uppercase; /* Optional: for a modern look */
+}
+.about-hero-overlay p,
+.contact-hero-overlay p,
+.services-hero-overlay p {
+  font-size: 0.95em;
+  margin: 0;
 }
