@@ -275,7 +275,7 @@ button:hover {
   }
 }
 
-/* Hamburger styles */
+/* Hamburger menu styles */
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -286,10 +286,10 @@ button:hover {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 300;
   position: absolute;
   top: 8px;
   right: 18px;
+  z-index: 300;
 }
 .nav-toggle span {
   display: block;
