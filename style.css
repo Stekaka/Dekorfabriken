@@ -19,6 +19,12 @@ body {
   padding: 0;
 }
 
+/* Prevent horizontal scroll on mobile */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 /* =============================
    🔗 3. Navigationsmeny
    ============================= */
@@ -230,6 +236,35 @@ button:hover {
   }
 }
 
+/* Hamburger styles */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 300;
+  position: absolute;
+  top: 8px;
+  right: 18px;
+}
+.nav-toggle span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin: 5px 0;
+  background: #222;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* =============================
+   🧪 9. Experimentella funktioner
+   ============================= */
 .service {
   display: flex;
   align-items: flex-start;
@@ -326,7 +361,7 @@ button:hover {
 }
 
 /* =============================
-   📜 9. Sidhuvud med bakgrundsbild
+   📜 10. Sidhuvud med bakgrundsbild
    ============================= */
 .page-header {
   background: linear-gradient(120deg, var(--primary) 60%, var(--accent) 100%);

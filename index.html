@@ -15,6 +15,11 @@
       <li><a href="about.html">Om oss</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
     </ul>
+    <button class="nav-toggle" aria-label="Öppna meny">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <header>
@@ -121,5 +126,13 @@
   <footer>
     &copy; 2025 Vikng Dekor
   </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navUl = document.querySelector('nav ul');
+    navToggle.addEventListener('click', () => {
+      navUl.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
