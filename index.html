@@ -6,6 +6,13 @@
   <title>ViKNG DEKOR</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-toggle {
+  display: none !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+  </style>
 </head>
 <body>
   <nav>
@@ -15,11 +22,6 @@
       <li><a href="about.html">Om oss</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
     </ul>
-    <button class="nav-toggle" aria-label="Öppna meny">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
   </nav>
 
   <header>
@@ -128,27 +130,23 @@
   </footer>
 
   <script>
-  const navToggle = document.querySelector('.nav-toggle');
-  const navUl = document.querySelector('nav ul');
-  navToggle.addEventListener('click', () => {
-    navUl.classList.toggle('open');
-  });
 
-  // Only run on mobile
-  if (window.innerWidth <= 900) {
-    const cards = document.querySelectorAll('.feature-card');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        } else {
-          entry.target.classList.remove('in-view');
-        }
-      });
-    }, { threshold: 0.2 }); // Try 0.2 instead of 0.5
 
-    cards.forEach(card => observer.observe(card));
-  }
+// Only run on mobile
+if (window.innerWidth <= 900) {
+  const cards = document.querySelectorAll('.feature-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.2 }); // Try 0.2 instead of 0.5
+
+  cards.forEach(card => observer.observe(card));
+}
   </script>
 </body>
 </html>
