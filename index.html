@@ -137,7 +137,7 @@
     <!-- Service Highlights (product cards) -->
     <section class="service-highlights">
       <div class="service-card" data-service="fordonsdekor">
-        <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80" alt="Fordonsdekor">
+        <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80" alt="Fordonsdekor">
         <h2>Fordonsdekor</h2>
         <p>Visa upp ditt varumärke på vägarna.</p>
       </div>
@@ -275,22 +275,6 @@ const featureDetails = {
   }
 };
 
-document.querySelectorAll('.feature-card').forEach(card => {
-  card.addEventListener('click', function() {
-    const key = this.getAttribute('data-feature');
-    const modal = document.getElementById('feature-details-modal');
-    const content = modal.querySelector('.feature-details-content');
-    if (featureDetails[key]) {
-      content.innerHTML = `
-        <div style="text-align:center;margin-bottom:1em;">${featureDetails[key].icon}</div>
-        <h2>${featureDetails[key].title}</h2>
-        <p>${featureDetails[key].text}</p>
-      `;
-      modal.classList.add('active');
-      modal.focus();
-    }
-  });
-});
 
 document.querySelector('.close-feature-details').addEventListener('click', function() {
   document.getElementById('feature-details-modal').classList.remove('active');
@@ -307,7 +291,7 @@ document.addEventListener('keydown', function(e) {
 const highlightDetails = {
   fordonsdekor: {
     title: "Fordonsdekor",
-    img: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80",
+    img: "https://insight.spandex.com/wp-content/uploads/2022/09/3M-ij280-training-169.jpg",
     text: "Vi erbjuder helfoliering, striping och logotypdekor för alla typer av fordon. Lyft ditt varumärke på vägarna med professionell fordonsdekor.",
     cta: {
       label: "Få offert på fordonsdekor",
@@ -367,7 +351,7 @@ document.addEventListener('keydown', function(e) {
 const serviceDetails = {
   fordonsdekor: {
     title: "Fordonsdekor",
-    img: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80", // Car wrapping image
     text: "Vi erbjuder helfoliering, striping och logotypdekor för alla typer av fordon. Lyft ditt varumärke på vägarna med professionell fordonsdekor.",
     cta: {
       label: "Få offert på fordonsdekor",
@@ -380,6 +364,15 @@ const serviceDetails = {
     text: "Vi designar, producerar och monterar skyltar för både inomhus- och utomhusbruk. Från fasadskyltar till fönsterdekor.",
     cta: {
       label: "Kontakta oss om skyltar",
+      link: "kontakt.html"
+    }
+  },
+  dekor: {
+    title: "Dekor & Foliering",
+    img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80",
+    text: "Kreativ dekor och foliering för alla ytor. Vi hjälper dig att skapa unika lösningar för både företag och privatpersoner.",
+    cta: {
+      label: "Få offert på dekor & foliering",
       link: "kontakt.html"
     }
   },
