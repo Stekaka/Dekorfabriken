@@ -47,7 +47,7 @@ nav {
 @media (max-width: 768px) {
   nav {
     position: fixed;
-    top: 1em;         /* Add this line for spacing from the top */
+    top: 2em;         /* Add this line for spacing from the top */
     left: 0;
     right: 0;
     width: 100vw;
@@ -190,12 +190,13 @@ main, section, .banner-video, .gallery-grid, .features {
 main, section {
   max-width: 1200px;
   width: 95%;
-  margin: 2em auto;      /* This centers the content */
+  margin: 2em auto;
   padding: 2em 2em;
-  background: #fff;
   color: #222;
-  border-radius: 18px;
-  box-shadow: 0 6px 32px rgba(0,0,0,0.06);
+  /* Remove background, border-radius, and box-shadow */
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 main {
@@ -528,6 +529,107 @@ button:hover {
       background 0.22s;
   }
 }
+ 
+/* --- Services Hero --- */
+.services-hero {
+  background: linear-gradient(100deg, #f7f7f9 60%, #e0e7ff 100%);
+  text-align: center;
+  padding: 2.2em 0.5em 1.2em 0.5em;
+  border-radius: 18px;
+  margin: 2em auto 2.5em auto;
+  max-width: 1200px;
+  width: 95vw;
+  min-width: 0;
+  box-shadow: 0 2px 16px rgba(140,82,255,0.07), 0 2px 8px rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.services-hero h1 {
+  font-size: 2.3em;
+  margin-bottom: 0.2em;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #181818;
+  text-shadow: 0 2px 8px rgba(140,82,255,0.04);
+}
+.services-hero p {
+  font-size: 1.1em;
+  color: #444;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* --- Services Grid --- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 2em;
+  max-width: 1200px;
+  margin: 0 auto 3em auto;
+  padding: 2em 1em;      /* Increased vertical padding */
+  /* Remove background, border-radius, box-shadow if present */
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.service-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(140,82,255,0.07), 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2em 1.2em 1.2em 1.2em;
+  text-align: center;
+  transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.service-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1em;
+  box-shadow: 0 2px 8px rgba(140,82,255,0.10);
+}
+.service-card h2 {
+  font-size: 1.3em;
+  margin: 0.5em 0 0.3em 0;
+  font-weight: 700;
+  color: #222;
+}
+.service-card p {
+  color: #555;
+  font-size: 1em;
+  margin: 0;
+}
+.service-card:hover,
+.service-card:focus-within {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px 0 color-mix(in srgb, #8c52ff 60%, transparent), 0 2px 16px rgba(0,0,0,0.08);
+  background: linear-gradient(120deg, #f7f7f9 60%, #f3eaff 100%);
+}
+
+/* Responsive tweaks */
+@media (max-width: 700px) {
+  .services-hero {
+    padding: 2.5em 0.5em 1.2em 0.5em;
+    border-radius: 0 0 18px 18px;
+  }
+  .services-grid {
+    gap: 1.2em;
+    padding: 0 0.2em;
+  }
+  .service-card {
+    padding: 1.2em 0.5em 0.8em 0.5em;
+  }
+}
 
 /* =============================
    SVG Ikoner
@@ -667,4 +769,98 @@ button:hover {
   width: 95%;
   margin: 0 auto 0 auto; /* No space below logo */
   display: block;
+}
+
+/* =============================
+   CTA Sektion
+   ============================= */
+.cta-section {
+  background: linear-gradient(100deg, #e0e7ff 60%, #f7f7f9 100%);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(140,82,255,0.07), 0 2px 8px rgba(0,0,0,0.04);
+  text-align: center;
+  padding: 2.5em 1em 2em 1em;
+  margin: 3em auto 2em auto;
+  max-width: 700px;
+}
+.cta-section h2 {
+  font-size: 2em;
+  margin-bottom: 0.4em;
+  font-weight: 800;
+  color: #181818;
+}
+.cta-section p {
+  font-size: 1.15em;
+  color: #444;
+  margin-bottom: 1.2em;
+}
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #8c52ff 60%, #4fd1c5 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1em;
+  padding: 0.9em 2.2em;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(140,82,255,0.10);
+  transition: background 0.18s, transform 0.18s;
+}
+.cta-btn:hover, .cta-btn:focus {
+  background: linear-gradient(90deg, #4fd1c5 60%, #8c52ff 100%);
+  transform: translateY(-2px) scale(1.04);
+  color: #fff;
+}
+
+/* =============================
+   Service Details
+   ============================= */
+.service-card {
+  cursor: pointer;
+}
+
+.service-details {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(34,34,34,0.45);
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+.service-details.active {
+  display: flex;
+}
+.details-content {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+  padding: 2.5em 2em 2em 2em;
+  max-width: 420px;
+  width: 90vw;
+  text-align: left;
+  position: relative;
+  animation: popIn 0.22s cubic-bezier(.4,2,.6,1);
+}
+.close-details {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-details:hover { color: #222; }
+
+@keyframes fadeIn {
+  from { background: rgba(34,34,34,0); }
+  to   { background: rgba(34,34,34,0.45); }
+}
+@keyframes popIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
 }
