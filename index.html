@@ -133,6 +133,22 @@
   navToggle.addEventListener('click', () => {
     navUl.classList.toggle('open');
   });
+
+  // Only run on mobile
+  if (window.innerWidth <= 900) {
+    const cards = document.querySelectorAll('.feature-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        } else {
+          entry.target.classList.remove('in-view');
+        }
+      });
+    }, { threshold: 0.5 }); // 50% visible
+
+    cards.forEach(card => observer.observe(card));
+  }
   </script>
 </body>
 </html>
