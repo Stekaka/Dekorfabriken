@@ -738,12 +738,10 @@ button:hover {
   .service-highlights,
   .features,
   .gallery {
-    width: 100vw;
+    width: 100%;
     max-width: 100vw;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
+    margin: 0 auto;
+    padding: 0 0.5em;
     box-sizing: border-box;
   }
   .service-highlights {
@@ -762,19 +760,29 @@ button:hover {
   .service-highlights .service-card,
   .service-highlights .service-card.wide-card,
   .feature-card {
-    width: 96vw;
-    min-width: 0;
-    max-width: 98vw;
-    margin: 0 auto;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 auto 1em auto;
     height: 320px;
     box-sizing: border-box;
   }
 }
 
-/* For very small screens, stack gallery images in one column */
-@media (max-width: 500px) {
+@media (max-width: 700px) {
+  .service-highlights .service-card,
+  .service-highlights .service-card.wide-card,
+  .feature-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 auto 1em auto;
+    height: 320px;
+    box-sizing: border-box;
+  }
   .gallery-grid {
     grid-template-columns: 1fr;
+    padding: 0 0.5em;
   }
 }
 .banner-logo {
