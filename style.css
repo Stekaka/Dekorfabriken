@@ -145,6 +145,13 @@ header {
 /* =============================
    📦 5. Huvudinnehåll & sektioner
    ============================= */
+main, section, .banner-video, .gallery-grid, .features {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 main, section {
   max-width: 1200px;      /* Wider content area */
   margin: 2em auto;       /* Less margin on top/bottom */
@@ -299,6 +306,30 @@ button:hover {
   background: #222;
   border-radius: 2px;
   transition: 0.3s;
+}
+
+/* Show hamburger only on mobile */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+  nav ul {
+    display: none;
+  }
+  nav ul.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 56px;
+    left: 1em;
+    right: 1em;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 0.5rem 0;
+    margin: 0;
+    z-index: 250;
+  }
 }
 
 /* =============================
