@@ -29,11 +29,11 @@ html, body {
    🔗 3. Navigationsmeny
    ============================= */
 nav {
-  background: rgba(255,255,255,0.95); /* semi-transparent, or remove for full transparency */
+  background: rgba(245, 245, 247, 0.92); /* Light grey, less transparent */
+  border-radius: 0 0 18px 18px;           /* Rounded lower corners */
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
   margin: 0 auto;
   padding: 0.5em 2em;
-  border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
   max-width: 900px;
   position: fixed; /* Overlay the banner */
   top: 1em;
@@ -41,6 +41,21 @@ nav {
   transform: translateX(-50%);
   z-index: 200;
   transition: background 0.2s;
+}
+
+/* Mobile: full width, keep rounded lower corners */
+@media (max-width: 768px) {
+  nav {
+    left: 0;
+    right: 0;
+    top: 0;
+    transform: none;
+    max-width: 100vw;
+    width: 100vw;
+    border-radius: 0 0 18px 18px;
+    margin: 0;
+    padding: 0.5em 0.5em;
+  }
 }
 
 nav ul {
@@ -225,7 +240,7 @@ button:hover {
     right: 0;
     max-width: 100vw;
     width: 100vw;
-    border-radius: 0;
+    border-radius: 0 0 18px 18px;
     margin: 0;
     padding: 0.5em 0.5em;
     z-index: 200;
