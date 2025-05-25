@@ -458,9 +458,12 @@ button:hover {
 }
 .gallery-grid img {
   width: 100%;
-  border-radius: 12px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;      /* Makes all images square */
+  height: auto;
   object-fit: cover;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border-radius: 12px;
+  display: block;
 }
 .testimonial {
   margin: 3em 0;

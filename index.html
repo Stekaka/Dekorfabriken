@@ -109,6 +109,57 @@
   right: 10px;
   cursor: pointer;
 }
+
+.gallery {
+  margin: 2em 0;
+}
+
+.gallery h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.gallery-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-arrow {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  z-index: 10;
+}
+
+.gallery-arrow.left {
+  left: -50px;
+}
+
+.gallery-arrow.right {
+  right: -50px;
+}
+
+.scrollable-gallery {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.scrollable-gallery img {
+  scroll-snap-align: center;
+  margin: 0 10px;
+  border-radius: 14px;
+}
   </style>
 </head>
 <body>
@@ -204,7 +255,7 @@
     <section class="gallery">
       <h2>Senaste projekt</h2>
       <div class="gallery-grid">
-        <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=400&q=80" alt="Bil med reklamdekor">
+        <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=400&q=80" alt="Bil med reklamdekor">
         <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=400&q=80" alt="Skyltmontering">
         <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Bilfoliering">
         <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Företagsskylt utomhus">
