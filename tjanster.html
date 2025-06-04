@@ -17,12 +17,10 @@
     </ul>
   </nav>
 
-  <header class="services-hero">
-    <h1>Våra tjänster</h1>
-    <p>
-      Vi erbjuder helhetslösningar inom fordonsdekor, skyltar och kreativ foliering.<br>
-      Upptäck vad vi kan göra för dig!
-    </p>
+  <header class="about-hero">
+    <div class="about-hero-overlay">
+      <h1>Om oss</h1>
+    </div>
   </header>
 
   <main>
@@ -47,14 +45,14 @@
         <h2>Fönsterdekor</h2>
         <p>Frostad folie, solfilm och dekor för skyltfönster och kontor. Skapa rätt känsla och integritet med stil.</p>
       </div>
-      <div class="service-card" data-service="bildekor-foretag">
+      <div class="service-card" data-service="bildekor">
         <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Bildekor företag">
         <h2>Bildekor företag</h2>
         <p>Profilera ditt företag på vägarna med logotyper, kontaktuppgifter och budskap på era fordon.</p>
       </div>
-      <div class="service-card" data-service="montering-och-service">
+      <div class="service-card" data-service="montering">
         <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=400&q=80" alt="Montering & Service">
-        <h2>Montering & Service</h2>
+        <h2>Montering & service</h2>
         <p>Vi erbjuder professionell montering och service av all dekor och foliering – snabbt, snyggt och hållbart.</p>
       </div>
     </section>
@@ -114,13 +112,31 @@ const serviceDetails = {
       label: "Få offert på fönsterdekor",
       link: "kontakt.html"
     }
+  },
+  bildekor: {
+    title: "Bildekor företag",
+    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+    text: "Profilera ditt företag på vägarna med logotyper, kontaktuppgifter och budskap på era fordon.",
+    cta: {
+      label: "Kontakta oss om bildekor",
+      link: "kontakt.html"
+    }
+  },
+  montering: {
+    title: "Montering & service",
+    img: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=400&q=80",
+    text: "Vi erbjuder professionell montering och service av all dekor och foliering – snabbt, snyggt och hållbart.",
+    cta: {
+      label: "Boka montering eller service",
+      link: "kontakt.html"
+    }
   }
-  // Lägg till fler tjänster om du vill
 };
 
 document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('click', function() {
-    const key = this.getAttribute('data-service');
+  card.addEventListener('click', function(event) {
+    const key = event.currentTarget.getAttribute('data-service');
+    console.log('Clicked card:', key, serviceDetails[key]);
     const modal = document.getElementById('service-details-modal');
     const content = modal.querySelector('.details-content');
     if (serviceDetails[key]) {
