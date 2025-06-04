@@ -346,6 +346,13 @@ button:hover {
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  animation: banner-zoom 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes banner-zoom {
+  0%   { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.12) translateY(-2%); }
 }
 
 .banner-overlay {
@@ -1377,4 +1384,11 @@ button:hover {
 .services-hero-overlay p {
   font-size: 0.95em;
   margin: 0;
+}
+
+@media (max-width: 700px) {
+  .banner-img {
+    animation: none;
+    transform: none;
+  }
 }
